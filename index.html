@@ -46,22 +46,21 @@ setInterval(function() {
   // Call a function repetatively with 2 Second interval
     var count;
     for(count = 0; count <= 7 ; count++)
-        {
-            var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById(lista[count].idiul).innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", lista[count].transmis, true);
-  xhttp.send();
-        }
-       
+        getData(lista[count].idiul,lista[count].transmis);
     
 }, 2000); //2000mSeconds update rate
 
-
+function getData(var whereHere, var fromWhere) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(whereHere).innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", fromWhere, true);
+  xhttp.send();
+}
     
 
 </script>
