@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP32 Web Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+   
+</head>
+<body>
+  
+   
+     <h5> for more informatio contact: LAVINIA DINIS BLA BLA</h5>
+     <p> the led is: %PLACEHOLDER_LED1%</p>
+    <p><a href="/on1"><button class="button">ON1</button></a></p>
+    <p><a href="/off1"><button class="button">OFF1</button></a></p>
+    <p><a href="/on2"><button class="button">ON2</button></a></p>
+    <p><a href="/off2"><button class="button">OFF2</button></a></p>
+    
+    
+<div class="card">
+  <h4>The ESP32 Update web page without refresh</h4><br>
+  <h1>Sensor Value:<span id="ADCValue">0</span></h1><br>
+    <h1>Sensor Value:<span id="sens1">0</span></h1><br>
+    <h1>Sensor Value:<span id="sens2">0</span></h1><br>
+    <h1>Sensor Value:<span id="sens3">0</span></h1><br>
+    <h1>Sensor Value:<span id="sens4">0</span></h1><br>
+    <h1>Sensor Value:<span id="sens5">0</span></h1><br>
+    <h1>Sensor Value:<span id="sens6">0</span></h1><br>
+    <h1>Sensor Value:<span id="sens7">0</span></h1><br>
+        
+</div>
+<script>
+    
+    
+    var lista = [{idiul: "ADCValue" , transmis: "readADC" },
+               {idiul: "sens1" , transmis: "readSens1" },
+               {idiul: "sens2", transmis: "readSens2" },
+               {idiul: "sens3", transmis: "readSens3" },
+               {idiul: "sens4", transmis: "readSens4" },
+               {idiul: "sens5", transmis: "readSens5" },
+               {idiul: "sens6", transmis: "readSens6" },
+               {idiul: "sens7", transmis: "readSens7" }
+        ]; 
+    
+setInterval(function() {
+  // Call a function repetatively with 2 Second interval
+    var count;
+    for(count = 0; count <= 7 ; count++)
+        {
+            var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(lista[count].idiul).innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", lista[count].transmis, true);
+  xhttp.send();
+        }
+       
+    
+}, 2000); //2000mSeconds update rate
+
+
+    
+
+</script>
+ 
+</body>
+</html>
