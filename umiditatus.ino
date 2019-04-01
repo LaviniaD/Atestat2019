@@ -9,13 +9,13 @@
 #include "Sensors.h"
 
 // Replace with your network credentials
-const char* ssid = "sthsth";
-const char* password = "sthsth";
+const char* ssid = "UPC4747867";
+const char* password = "ffyQhrd6whtt";
 
-
+int i;
 // Soil Humidity sensor
 const int humPin = 34;
-
+int outHum;
 //the sensor struct -> i ll use this to send the data from the sesnors
 struct SensorData sensData;
 
@@ -36,6 +36,9 @@ String sens4;
 String sens5;
 String sens6;
 String sens7;
+
+String list[8][10] = {shumi,sens1,sens2,sens3,sens4,sens5,sens6,sens7};
+String sending[8][11]={"/readSens0","/readSens1","/readSens2","/readSens3","/readSens4","/readSens5","/readSens6","/readSens7"};
 
 String processor(const String& var)
 {
@@ -83,38 +86,11 @@ digitalWrite( led2, LOW);
   
 
   //========================read the sensors and send the data ==============
-  server.on("/readADC", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", shumi);
+  for(i=0; i<=7; i++)
+  {
+    server.on(sending[i], HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(200, "text/plane", list[i]);
   });
-
- server.on("/readSens1", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", sens1);
-  });
-
-  server.on("/readSens2", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", sens2);
-  });
-
-  server.on("/readSens3", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", sens3);
-  });
-
-  server.on("/readSens4", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", sens4);
-  });
-
-  server.on("/readSens5", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", sens5);
-  });
-
-  server.on("/readSens6", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", sens6);
-  });
-
-  server.on("/readSens7", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plane", sens7);
-  });
-
   
   // Route to set GPIO to HIGH
   server.on("/on1", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -141,9 +117,12 @@ digitalWrite( led2, LOW);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  shumi = String(analogRead(humPin));
+  // put your main code here, to run repeatedly: 
+  outHum= analogRead(humPin);
+  outHum = map(outHum,4095,0,0,100);
   sensData = sensorsRead();
+
+  shumi=String(outHum);
   sens1=String(sensData.ShT31D.temp);
   sens2=String(sensData.ShT31D.humi);
   sens3=String(sensData.GY30);
