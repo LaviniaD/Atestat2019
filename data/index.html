@@ -3,77 +3,73 @@
 <head>
   <title>ESP32 Web Server</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
    
 </head>
 <body>
-  
+	
+	<table id="sensors">
+  <tr>
+    <th>SENZOR</th>
+    <th>VALOARE</th> 
+    <th>U.M.</th>
+  </tr>
+  <tr>
+    <td>Soil Humidity</td>
+    <td><span id="sens0">0</span></td> 
+    <td>% (percent) </td>
+  </tr>
+  <tr>
+    <td>Temperature</td>
+    <td><span id="sens1">0</span></td> 
+    <td>&#8451;</td>
+  </tr>
+   <tr>
+    <td>Humidity</td>
+    <td><span id="sens2">0</span></td> 
+    <td>% (percent) </td>
+  </tr>
+   <tr>
+    <td>Light Intensity</td>
+    <td><span id="sens3">0</span></td> 
+    <td>lx</td>
+  </tr>
+   <tr>
+    <td>MQ5 (LPG, Natural Gas, Town Gas)</td>
+    <td><span id="sens4">0</span></td> 
+    <td>/10000 ppm</td>
+  </tr>
+   <tr>
+    <td>MQ135 (benzene,alcohol,smoke)</td>
+    <td><span id="sens5">0</span></td> 
+    <td>/ppm</td>
+  </tr>
+   <tr>
+    <td>Pressure</td>
+    <td><span id="sens6">0</span></td> 
+    <td>Pa</td>
+  </tr>
+   <tr>
+    <td>Altitude</td>
+    <td><span id="sens7">0</span></td> 
+    <td>m (meters) </td>
+  </tr>
+</table>
    
-     <h5> for more informatio contact: LAVINIA DINIS BLA BLA</h5>
-     <p> the led is: %PLACEHOLDER_LED1%</p>
+    <p> the led is: %PLACEHOLDER_LED1%</p>
     <p><a href="/on1"><button class="button">ON1</button></a></p>
     <p><a href="/off1"><button class="button">OFF1</button></a></p>
     <p><a href="/on2"><button class="button">ON2</button></a></p>
     <p><a href="/off2"><button class="button">OFF2</button></a></p>
     
-    
-<div class="card">
-  <h4>The ESP32 Update web page without refresh</h4><br>
-  <h1>Sensor Value:<span id="ADCValue">0</span></h1><br>
-    <h1>Sensor Value:<span id="sens1">0</span></h1><br>
-    <h1>Sensor Value:<span id="sens2">0</span></h1><br>
-    <h1>Sensor Value:<span id="sens3">0</span></h1><br>
-    <h1>Sensor Value:<span id="sens4">0</span></h1><br>
-    <h1>Sensor Value:<span id="sens5">0</span></h1><br>
-    <h1>Sensor Value:<span id="sens6">0</span></h1><br>
-    <h1>Sensor Value:<span id="sens7">0</span></h1><br>
-        
-  <br><a href="https://circuits4you.com">Circuits4you.com</a>
-</div>
 <script>
-    
-    
-    
-     function GetReadings() {
-      	nocache = "&nocache";
-      	var request = new XMLHttpRequest();
-      	request.onreadystatechange = function() {
-    			if (this.status == 200) {
-    				if (this.responseXML != null) {
-    					// XML file received - contains sensor readings
-    					var count;
-    					var num_an = this.responseXML.getElementsByTagName('reading').length;
-    					for (count = 0; count < num_an; count++) {
-    						document.getElementsByClassName("reading")[count].innerHTML =
-    					  this.responseXML.getElementsByTagName('reading')[count].childNodes[0].nodeValue;
-    					}
-    				}
-    			}
-      	}
-      	// Send HTTP GET request to get the latest sensor readings
-      	request.open("GET", "?update_readings" + nocache, true);
-      	request.send(null);
-        DisplayCurrentTime();
-        setTimeout('GetReadings()', 10000);
-      }
-    
-    
-    
-    
     
 setInterval(function() {
   // Call a function repetatively with 2 Second interval
-    getData();
-    getData1();
-    getData2();
-    getData3();
-    getData4();
-    getData5();
-    getData6();
-    getData7();
+    getData(); //change this function as well
+   
 }, 2000); //2000mSeconds update rate
-
-function getData() {
+function getData() { //change this one
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -84,91 +80,6 @@ function getData() {
   xhttp.open("GET", "readADC", true);
   xhttp.send();
 }
-    
-function getData1() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("sens1").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "readSens1", true);
-  xhttp.send();
-}
-    
-function getData2() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("sens2").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "readSens2", true);
-  xhttp.send();
-}
-    
-    function getData3() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("sens3").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "readSens3", true);
-  xhttp.send();
-}
-    
-    function getData4() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("sens4").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "readSens4", true);
-  xhttp.send();
-}
-    
-    function getData5() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("sens5").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "readSens5", true);
-  xhttp.send();
-}
-    
-    function getData6() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("sens6").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "readSens6", true);
-  xhttp.send();
-}
-    
-    function getData7() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("sens7").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "readSens7", true);
-  xhttp.send();
-}
-    
 </script>
  
 </body>
