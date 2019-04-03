@@ -3,6 +3,7 @@ html {
   display: inline-block;
   margin: 0px auto;
   text-align: center;
+  background-color:#154360;
 }
 h1{
   color: #0F3376;
@@ -22,18 +23,29 @@ p{
   font-size: 30px;
   margin: 2px;
   cursor: pointer;
+  transition: 0.5s;
 }
 .button2 {
   background-color: #f44336;
 }
 
-.card{
-    max-width: 400px;
-     min-height: 250px;
-     background: #02b875;
-     padding: 30px;
-     box-sizing: border-box;
-     color: #FFF;
-     margin:20px;
-     box-shadow: 0px 2px 18px -4px rgba(0,0,0,0.75);
+#sensors {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  color:white;
 }
+#sensors td, #sensors th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#sensors th {
+	background-color:#2980B9  ;
+}
+
+#sensors tr:hover {
+	background-color: #2980B9;
+	transition: 0.6s;
+	}
+
