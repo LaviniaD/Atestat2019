@@ -32,7 +32,6 @@ p{
 #sensors {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 50%;
   color:white;
 }
 #sensors td, #sensors th {
@@ -49,3 +48,11 @@ p{
 	transition: 0.6s;
 	}
 
+#toleft {
+ float: left;
+ width: 100%;
+}
+#toright {
+float: right;
+width: 100%;
+}	
