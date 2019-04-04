@@ -3,56 +3,196 @@ html {
   display: inline-block;
   margin: 0px auto;
   text-align: center;
-  background-color:#154360;
-}
-h1{
-  color: #0F3376;
-  padding: 2vh;
+  background-color:  #000000  ;
 }
 p{
   font-size: 1.5rem;
 }
-.button {
-  display: inline-block;
-  background-color: #008CBA;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  padding: 16px 40px;
-  text-decoration: none;
-  font-size: 30px;
-  margin: 2px;
-  cursor: pointer;
-  transition: 0.5s;
-}
-.button2 {
-  background-color: #f44336;
-}
 
 #sensors {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  color:white;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: separate;
+    color:#00CC33;
+    padding: 10px;
 }
 #sensors td, #sensors th {
-  border: 1px solid #ddd;
+  border: 1px solid  #00CC33 ;
   padding: 8px;
+    
 }
 
 #sensors th {
-	background-color:#2980B9  ;
+	border: 7px solid #00CC33  ;
 }
 
 #sensors tr:hover {
-	background-color: #2980B9;
+    color: white;
+	background-color:  #00CC33 ;
 	transition: 0.6s;
+    
 	}
 
-#toleft {
- float: left;
- width: 100%;
+body {
+  margin: 10px;
 }
-#toright {
-float: right;
-width: 100%;
-}	
+
+.topnav {
+    overflow: hidden;
+    color: white;
+}
+
+.topnav {
+    float: right;
+    width:60%;
+    padding: 5px;
+}
+
+.dropbtn {
+
+    width: 200px;
+    height: 100px;
+    font-size: 18px;
+    display: inline-block;
+    background-color:  #000000;
+    border: 1px solid #00CC33;
+    border-radius: 8px;
+    color: #00CC33;
+    padding: 18px 50px;
+    text-decoration: none;
+    font-size: 30px;
+    margin: 3px;
+    cursor: pointer;
+    transition: 0.5s;
+    -webkit-transition: width 2s; /* For Safari 3.1 to 6.0 */
+  transition: width 2s;
+}
+
+.dropbtn:hover {
+    width:220px;
+}
+
+.dropdown {
+  display: inline-block;
+    float: right;
+}
+
+.dropdown-content {
+     width:200px;
+  display: none;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 10px 8px 16px 10px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #00CC33;
+  padding: 18px 50px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover 
+{
+    background-color: #00CC33;
+    color:white;
+}
+
+.dropdown:hover .dropdown-content
+{
+    display: block;
+}
+
+.dropdown:hover .dropbtn 
+{
+    background-color: #00CC33;
+    color:white;
+}
+
+.toleft {
+    float:left;
+}
+
+
+.overlay {
+    
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.7);
+  overflow-x: hidden;
+  transition: 0.5s;
+    color:white;
+    
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 40px;
+  }
+}
+
+.tooltip {
+    padding: 13px;
+    margin: 10px;
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  float:left;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #00CC33;
+  text-align: center;
+  border-radius: 9px;
+  padding: 9px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+ 
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
