@@ -3,11 +3,11 @@
 <head>
   <title>ESP32 Web Server</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
    
 </head>
 <body>
-	<div id="toleft">
+	<div class="toleft">
 	<table id="sensors">
   <tr>
     <th>SENZOR</th>
@@ -54,36 +54,87 @@
     <td><span id="sens7">0</span></td> 
     <td>m (meters) </td>
   </tr>
-</table>
+</table> 
+        
+        
+        <div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <p> Automatizarea casei. Proiect realizat cu ajutorul placii de dezvoltare ESP32, cu conexiune Wi-Fi si numerosi senzori precum si 2 LED-uri ca inlocuitori ai becurilor. De pe acest site se poate urmari evolutia unor diferiti parametri raportati la mediu precum si cantitatea de gaz din casa ce poate preveni unele accidente neplacute. De asemenea este posibil controlul luminilor din casa</p>
+  </div>
 </div>
-   
-   <div id="toright">
-    <p> the led is: %PLACEHOLDER_LED1%</p>
-    <p><a href="/on1"><button class="button">ON1</button></a></p>
-    <p><a href="/off1"><button class="button">OFF1</button></a></p>
-    <p><a href="/on2"><button class="button">ON2</button></a></p>
-    <p><a href="/off2"><button class="button">OFF2</button></a></p>
-	
+    
+    <div class="tooltip"><span style="font-size:30px;cursor:pointer; color:#00CC33; float:left" onclick="openNav()">&#9776; </span>
+  <span class="tooltiptext"> Detalii </span>
+</div>
+    </div>
+    
+    
+    
+    <div class="topnav">
+        <div class="dropdown">
+               <button  class="dropbtn">ON</button>
+                  <div class="dropdown-content" >
+                    <a href="/on1">ON1</a>
+                    <a href="/on2">ON2</a>
+                    <a href="/allon">ALL ON</a>
+                  </div>             
+        </div>
+        
+        <div class="dropdown">
+            <button class="dropbtn">OFF</button>
+              <div  class="dropdown-content">
+                <a href="/off1">OFF1</a>
+                <a href="/off2">OFF2</a>
+                <a href="/alloff">ALL OFF</a>
+              </div>	
 	</div>
+    </div>
     
 <script>
     
+    var parts = [
+        {where: "sens0", from: "readSens0"},
+        {where: "sens1", from: "readSens1"},
+        {where: "sens2", from: "readSens2"},
+        {where: "sens3", from: "readSens3"},
+        {where: "sens4", from: "readSens4"},
+        {where: "sens5", from: "readSens5"},
+        {where: "sens6", from: "readSens6"},
+        {where: "sens7", from: "readSens7"},
+        
+    ];
+    
 setInterval(function() {
   // Call a function repetatively with 2 Second interval
-    getData(); //change this function as well
+    var count;
+    for(count =0;count <=7;count ++)
+        {
+            getData(parts[count].where,parts[count].from);
+        }
+    
    
 }, 2000); //2000mSeconds update rate
-function getData() { //change this one
+function getData(whereHere, fromWhere) { //change this one
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("ADCValue").innerHTML =
+      document.getElementById(whereHere).innerHTML =
       this.responseText;
     }
   };
-  xhttp.open("GET", "readADC", true);
+  xhttp.open("GET", fromWhere, true);
   xhttp.send();
 }
+    
+    function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+
 </script>
  
 </body>
