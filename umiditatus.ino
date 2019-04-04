@@ -8,8 +8,8 @@
 #include "Sensors.h"
 
 // Replace with your network credentials
-const char* ssid = "UPC4747867";
-const char* password = "ffyQhrd6whtt";
+const char* ssid = "yourssid";
+const char* password = "yourpassword";
 
 
 // Soil Humidity sensor
