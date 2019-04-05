@@ -7,6 +7,13 @@
    
 </head>
 <body>
+	<h1> ESP32 HOME AUTOMATION</h1>
+	 <div id="details">
+  
+    <p> Proiect realizat cu ajutorul placii de dezvoltare ESP32, cu conexiune Wi-Fi si numerosi senzori precum si 2 LED-uri ca inlocuitori ai becurilor. De pe acest site se poate urmari evolutia unor diferiti parametri raportati la mediu precum si cantitatea de gaz din casa ce poate preveni unele accidente neplacute. De asemenea este posibil controlul luminilor din casa. Acest proiect poate fi extins, adaugand multe alte facilitati folositoare, cum ar fi controlul prizelor.</p>
+	</div>
+
+
 	<div class="toleft">
 	<table id="sensors">
   <tr>
@@ -56,20 +63,6 @@
   </tr>
 </table> 
         
-        
-        <div id="myNav" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <div class="overlay-content">
-    <p> Automatizarea casei. Proiect realizat cu ajutorul placii de dezvoltare ESP32, cu conexiune Wi-Fi si numerosi senzori precum si 2 LED-uri ca inlocuitori ai becurilor. De pe acest site se poate urmari evolutia unor diferiti parametri raportati la mediu precum si cantitatea de gaz din casa ce poate preveni unele accidente neplacute. De asemenea este posibil controlul luminilor din casa</p>
-  </div>
-</div>
-    
-    <div class="tooltip"><span style="font-size:30px;cursor:pointer; color:#00CC33; float:left" onclick="openNav()">&#9776; </span>
-  <span class="tooltiptext"> Detalii </span>
-</div>
-    </div>
-    
-    
     
     <div class="topnav">
         <div class="dropdown">
@@ -126,15 +119,6 @@ function getData(whereHere, fromWhere) { //change this one
   xhttp.open("GET", fromWhere, true);
   xhttp.send();
 }
-    
-    function openNav() {
-  document.getElementById("myNav").style.width = "100%";
-}
-
-function closeNav() {
-  document.getElementById("myNav").style.width = "0%";
-}
-
 </script>
  
 </body>
